@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/photostack';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/photoshare';
 const USE_MOCK_DB = process.env.USE_MOCK_DB === 'true';
 
 // Connection options optimized for Azure Cosmos DB (MongoDB API)
