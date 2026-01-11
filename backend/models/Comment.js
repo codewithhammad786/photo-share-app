@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// Comment Schema for storing comments on photos
 const commentSchema = new mongoose.Schema({
     photoId: { 
         type: mongoose.Schema.Types.ObjectId, 
