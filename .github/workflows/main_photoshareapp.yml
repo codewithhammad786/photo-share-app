@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - photoshareapp
 
 on:
@@ -10,7 +13,7 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read
+      contents: read # This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -20,17 +23,19 @@ jobs:
         with:
           node-version: '22.x'
 
+      # Backend install & build (uses backend/package.json)
       - name: npm install and build (backend)
         working-directory: ./backend
         run: |
           npm install
           npm run build --if-present
+          # no npm test here
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./backend
+          path: ./backend   # uploads the backend folder
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,7 +46,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-          path: ./backend
+          # IMPORTANT: put files in the repo root, not in ./backend again
+          path: .
+
+      # Now ./backend/package.json and ./backend/server.js exist here
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -49,5 +57,5 @@ jobs:
         with:
           app-name: 'photoshareapp'
           slot-name: 'Production'
-          package: ./backend
+          package: ./backend   # deploy backend/ as the app root
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6155EECA071140D184A998E26F340DA7 }}
