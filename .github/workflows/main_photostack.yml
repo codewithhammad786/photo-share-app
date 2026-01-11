@@ -67,5 +67,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'photosharewebapp'
-          package: .
+          package: ./backend
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D8E25683FA16462992A5E7FA778CF8B4 }}
