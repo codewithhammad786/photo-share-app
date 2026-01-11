@@ -70,4 +70,4 @@ jobs:
         with:
           app-name: 'photoshareapp'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EF8571D063134ADBB44B48B5CD8531E2 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_41265B25628B4E319A3B1CF7F3528B54 }}
