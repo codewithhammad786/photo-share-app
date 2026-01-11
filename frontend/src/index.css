@@ -1,8 +1,65 @@
+@import "tailwindcss";
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-:root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #8b5cf6;
+/* Base globals */
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html, body {
+    @apply bg-slate-950 text-slate-200 font-inter antialiased;
+  }
+
+  a {
+    @apply no-underline text-inherit;
+  }
+
+  button {
+    @apply font-inherit;
+  }
+}
+
+/* Reusable Buttons */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl
+      font-medium text-sm transition active:scale-95 disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-br from-indigo-500 to-purple-500 text-white shadow-md
+      hover:brightness-110;
+  }
+
+  .btn-outline {
+    @apply border border-slate-600 bg-slate-900 text-slate-200
+      hover:border-purple-400;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  .spinner {
+    @apply inline-block h-5 w-5 rounded-full border-2 border-slate-500 border-t-transparent animate-spin;
+  }
+}
+
+/* Scrollbar (nice + dark) */
+@layer utilities {
+  *::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+  *::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-md;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500;
+  }
 }

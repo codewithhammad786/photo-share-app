@@ -9,7 +9,7 @@ import Signup from './pages/Signup';
 import Upload from './pages/Upload';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
-import './App.css';
+
 
 function App() {
   return (
