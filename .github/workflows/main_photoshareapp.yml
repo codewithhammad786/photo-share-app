@@ -23,17 +23,26 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
+      # 👉 Backend install / build / test (uses backend/package.json)
+      - name: npm install, build, and test (backend)
+        working-directory: ./backend
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-      
+
+      # (Optional) If you also want to build the React frontend, uncomment:
+      # - name: npm install and build (frontend)
+      #   working-directory: ./frontend
+      #   run: |
+      #     npm install
+      #     npm run build --if-present
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: ./backend   # 👈 only upload backend to deploy to Azure
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,6 +53,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+          path: .   # will recreate ./backend here
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -51,5 +61,5 @@ jobs:
         with:
           app-name: 'photoshareapp'
           slot-name: 'Production'
-          package: .
+          package: ./backend   # 👈 deploy backend folder where package.json lives
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6155EECA071140D184A998E26F340DA7 }}
