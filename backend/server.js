@@ -102,14 +102,13 @@ const startServer = async () => {
             const frontendPath = path.join(__dirname, 'public');
             app.use(express.static(frontendPath));
             
-            // Handle SPA routing - serve index.html for non-API routes
-            // Express 5 requires named parameter for wildcard: {*path} instead of *
-            app.get('{*path}', (req, res, next) => {
-                if (req.path.startsWith('/api') || req.path === '/health') {
-                    return next();
-                }
-                res.sendFile(path.join(frontendPath, 'index.html'));
-            });
+                // Handle SPA routing - serve index.html for non-API routes
+                app.get('*', (req, res, next) => {
+                    if (req.path.startsWith('/api') || req.path === '/health') {
+                        return next();
+                    }
+                    res.sendFile(path.join(frontendPath, 'index.html'));
+                });
             console.log('📁 Serving static frontend from /public');
         }
         
