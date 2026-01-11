@@ -16,6 +16,8 @@ const Navbar = () => {
     }
   };
 
+  
+
   useEffect(() => {
     const close = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target))
