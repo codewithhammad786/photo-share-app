@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//database connection string from environment variables or default to local MongoDB
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/photoshare';
 const USE_MOCK_DB = process.env.USE_MOCK_DB === 'true';
 
