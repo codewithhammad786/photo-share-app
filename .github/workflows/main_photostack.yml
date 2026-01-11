@@ -68,4 +68,4 @@ jobs:
         with:
           app-name: 'photostack'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EF8571D063134ADBB44B48B5CD8531E2 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D8E25683FA16462992A5E7FA778CF8B4 }}
