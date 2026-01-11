@@ -8,7 +8,7 @@
  */
 
 const jwt = require('jsonwebtoken');
-
+// Get role from command line argument (default to 'consumer')
 const role = process.argv[2] || 'consumer';
 
 if (!['creator', 'consumer'].includes(role)) {
